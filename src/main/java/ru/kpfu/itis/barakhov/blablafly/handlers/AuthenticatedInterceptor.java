@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 
-public class AuthenticatedPagesInterceptor implements HandlerInterceptor {
+public class AuthenticatedInterceptor implements HandlerInterceptor {
 
-    private final Logger LOG = LoggerFactory.getLogger(AuthenticatedPagesInterceptor.class);
+    private final Logger LOG = LoggerFactory.getLogger(AuthenticatedInterceptor.class);
 
     private final String AUTHENTICATED_PATH = "/flights";
 
