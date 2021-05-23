@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import ru.kpfu.itis.barakhov.blablafly.models.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UsersRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }

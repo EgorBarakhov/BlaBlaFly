@@ -3,7 +3,7 @@ package ru.kpfu.itis.barakhov.blablafly.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.barakhov.blablafly.dto.FlightDto;
-import ru.kpfu.itis.barakhov.blablafly.repositories.FlightRepository;
+import ru.kpfu.itis.barakhov.blablafly.repositories.FlightsRepository;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import static ru.kpfu.itis.barakhov.blablafly.dto.FlightDto.*;
 public class FlightsServiceImpl implements FlightsService {
 
     @Autowired
-    private FlightRepository flightRepository;
+    private FlightsRepository flightsRepository;
 
     @Override
     public List<FlightDto> getAllFlights() {
-        return from(flightRepository.findAll());
+        return from(flightsRepository.findAll());
     }
 }

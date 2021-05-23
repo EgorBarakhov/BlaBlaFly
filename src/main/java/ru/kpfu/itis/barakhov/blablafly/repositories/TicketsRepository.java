@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.kpfu.itis.barakhov.blablafly.models.Ticket;
 
 @Repository
-public interface TicketRepository extends JpaRepository<Ticket, Long> {
+public interface TicketsRepository extends JpaRepository<Ticket, Long> {
 }
