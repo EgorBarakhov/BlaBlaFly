@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.kpfu.itis.barakhov.blablafly.filters.AuthenticatedFilter;
 import ru.kpfu.itis.barakhov.blablafly.services.UserService;
 
 @Configuration
@@ -30,11 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf()
                     .disable()
-                .addFilterBefore(new AuthenticatedFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                    .antMatchers("/signup", "/login", "/").not().authenticated()
                     .antMatchers("/admin/**/*").hasRole("ADMIN")
-                    .antMatchers("resources/**").permitAll()
+                    .antMatchers("/signup", "/login", "/", "resources/**").permitAll()
                     .anyRequest()
                         .authenticated().and()
                 .formLogin()
