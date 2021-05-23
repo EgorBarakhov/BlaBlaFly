@@ -6,5 +6,4 @@ import ru.kpfu.itis.barakhov.blablafly.models.Flight;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
-
 }
