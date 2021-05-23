@@ -3,17 +3,24 @@ package ru.kpfu.itis.barakhov.blablafly.controllers;
 import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.kpfu.itis.barakhov.blablafly.services.FlightsService;
 
 @Log4j2
 @Controller
 public class FlightsController {
 
+    @Autowired
+    private FlightsService flightsService;
+
     private final Logger LOG = LoggerFactory.getLogger(FlightsController.class);
 
     @GetMapping("/flights")
-    public String listFlights() {
+    public String listFlights(Model model) {
+        model.addAttribute("flightsList", flightsService.getAllFlights());
         return "flights/index";
     }
 
