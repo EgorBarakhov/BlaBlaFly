@@ -8,6 +8,24 @@
     <title>Flights | BlaBlaFly</title>
 </head>
 <body>
-
+<form action="/flights" method="get" modelattribute="flightForm">
+    <label> Departure City:
+        <select name="departureCity">
+            <option value=""></option>
+            <#list citiesList as city>
+                <option value=${city.name}>${city.name}</option>
+            </#list>
+        </select>
+    </label>
+    <label> Arrival City:
+        <select name="arrivalCity">
+            <option value=""></option>
+            <#list citiesList as city>
+                <option value=${city.name}>${city.name}</option>
+            </#list>
+        </select>
+    </label>
+    <input type="submit" value="Search">
+</form>
 </body>
 </html>

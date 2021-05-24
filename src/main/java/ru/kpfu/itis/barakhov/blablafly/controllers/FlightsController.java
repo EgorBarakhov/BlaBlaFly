@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.kpfu.itis.barakhov.blablafly.dto.FlightDto;
+import ru.kpfu.itis.barakhov.blablafly.services.CitiesService;
 import ru.kpfu.itis.barakhov.blablafly.services.FlightsService;
 
 @Log4j2
@@ -14,13 +16,17 @@ import ru.kpfu.itis.barakhov.blablafly.services.FlightsService;
 public class FlightsController {
 
     @Autowired
+    private CitiesService citiesService;
+
+    @Autowired
     private FlightsService flightsService;
 
     private final Logger LOG = LoggerFactory.getLogger(FlightsController.class);
 
     @GetMapping("/flights")
-    public String listFlights(Model model) {
-        model.addAttribute("flightsList", flightsService.getAllFlights());
+    public String listFlights(@ModelAttribute("search") FlightDto flight, Model model) {
+        model.addAttribute("flightsList", flightsService.searchFlights(flight, model));
+        model.addAttribute("citiesList", citiesService.findAll());
         return "flights/index";
     }
 
