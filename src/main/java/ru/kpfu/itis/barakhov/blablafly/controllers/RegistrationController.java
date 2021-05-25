@@ -10,10 +10,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.kpfu.itis.barakhov.blablafly.dto.UserForm;
+import ru.kpfu.itis.barakhov.blablafly.dto.forms.UserForm;
 import ru.kpfu.itis.barakhov.blablafly.models.User;
 import ru.kpfu.itis.barakhov.blablafly.services.RegistrationService;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Arrays;
 
@@ -33,22 +35,11 @@ public class RegistrationController {
     }
 
     @PostMapping("/signup")
-    public String addUser(@ModelAttribute("userForm") @Valid UserForm userForm, BindingResult bindingResult, Model model) {
+    public String addUser(@ModelAttribute("userForm") @Valid UserForm userForm, BindingResult bindingResult,
+                          Model model, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             LOG.error("SignUp form has received {} error(s): {}", bindingResult.getErrorCount(), Arrays.toString(bindingResult.getAllErrors().toArray()));
-            model.addAttribute("usernameError", "Something went wrong. Product owner is notified about this incident");
-            return "signUp";
-        }
-        if (userForm.getUsername().length() < 5) {
-            model.addAttribute("usernameError", "At least 5 characters");
-            return "signUp";
-        }
-        if (userForm.getPassword().length() < 5) {
-            model.addAttribute("passwordError", "At least 5 characters");
-            return "signUp";
-        }
-        if (!userForm.getPassword().equals(userForm.getConfirmPassword())) {
-            model.addAttribute("passwordError", "Passwords do not match");
+            model.addAttribute("errors", "Something went wrong. Product owner is notified about this incident");
             return "signUp";
         }
         if (!registrationService.signUp(userForm)){
@@ -57,9 +48,13 @@ public class RegistrationController {
         } else {
             model.addAttribute("success", "Your account has been created!");
             LOG.info("Created new user with name {}", userForm.getUsername());
+            try {
+                httpServletRequest.login(userForm.getUsername(), userForm.getPassword());
+                return "redirect:/flights";
+            } catch (ServletException exception) {
+                return "redirect:/login";
+            }
         }
-
-        return "redirect:/login";
     }
 
 }

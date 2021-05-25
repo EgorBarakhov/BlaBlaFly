@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
@@ -21,19 +20,15 @@ public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private Integer capacity;
 
-    @NotNull
     private String legacySerialNumber;
 
     @OneToMany(mappedBy = "aircraft")
     private Set<Flight> flights;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;

@@ -43,6 +43,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean usernameUniqueness(String username) {
+        return usersRepository.existsByUsername(username);
+    }
+
+    @Override
     public User findUserById(Long userId) {
         Optional<User> userFromDb = usersRepository.findById(userId);
         return userFromDb.orElse(new User());

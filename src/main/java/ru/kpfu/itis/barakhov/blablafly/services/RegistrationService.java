@@ -1,6 +1,6 @@
 package ru.kpfu.itis.barakhov.blablafly.services;
 
-import ru.kpfu.itis.barakhov.blablafly.dto.UserForm;
+import ru.kpfu.itis.barakhov.blablafly.dto.forms.UserForm;
 
 public interface RegistrationService {
 

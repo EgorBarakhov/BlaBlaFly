@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -21,10 +20,8 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private Long shiftFromUtc;
 
     @OneToMany(mappedBy = "arrivalCity", fetch = FetchType.LAZY)

@@ -11,6 +11,8 @@ public interface UserService extends UserDetailsService {
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
+    boolean usernameUniqueness(String username);
+
     User findUserById(Long userId);
 
     List<User> allUsers();

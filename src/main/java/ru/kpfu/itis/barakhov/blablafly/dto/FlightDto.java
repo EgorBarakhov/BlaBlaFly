@@ -3,7 +3,6 @@ package ru.kpfu.itis.barakhov.blablafly.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import ru.kpfu.itis.barakhov.blablafly.models.City;
 import ru.kpfu.itis.barakhov.blablafly.models.Flight;
 
 import java.util.List;

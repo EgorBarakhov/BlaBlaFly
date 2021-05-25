@@ -2,7 +2,7 @@ package ru.kpfu.itis.barakhov.blablafly.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.barakhov.blablafly.dto.UserForm;
+import ru.kpfu.itis.barakhov.blablafly.dto.forms.UserForm;
 import ru.kpfu.itis.barakhov.blablafly.models.User;
 
 

@@ -7,4 +7,6 @@ import ru.kpfu.itis.barakhov.blablafly.models.User;
 @Repository
 public interface UsersRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
+
+    boolean existsByUsername(String username);
 }

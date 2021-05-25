@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import ru.kpfu.itis.barakhov.blablafly.dto.FlightDto;
+import ru.kpfu.itis.barakhov.blablafly.dto.forms.FlightSearchForm;
 import ru.kpfu.itis.barakhov.blablafly.repositories.FlightsRepository;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class FlightsServiceImpl implements FlightsService {
     private FlightsRepository flightsRepository;
 
     @Override
-    public List<FlightDto> searchFlights(FlightDto flight, Model model) {
+    public List<FlightDto> searchFlights(FlightSearchForm flight, Model model) {
         if (flight == null ||
                 (flight.getDepartureCity() == null && flight.getArrivalCity() == null && flight.getDepartureTime() == null)) {
             return from(flightsRepository.findAll());
