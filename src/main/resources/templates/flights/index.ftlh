@@ -25,7 +25,18 @@
             </#list>
         </select>
     </label>
+    <label> Departure Day:
+        <input type="date" name="departureDate">
+    </label>
     <input type="submit" value="Search">
 </form>
+<div>
+    <#list flightsList as flight>
+        <div>Index: ${flight_index}</div>
+        <div>Flight Aircraft: ${flight.aircraftName}</div>
+        <div>Available Places: ${flight.availablePlacesCount}</div>
+        <div>Pilot: ${flight.aircraftOwnerName}</div>
+    </#list>
+</div>
 </body>
 </html>

@@ -20,8 +20,20 @@ public class FlightDto {
 
     private City arrivalCity;
 
+    private Integer availablePlacesCount;
+
+    private String aircraftName;
+
+    private String aircraftOwnerName;
+
     public static FlightDto from(Flight flight) {
         return FlightDto.builder()
+                .departureTime(flight.getDepartureTimeUtc())
+                .availablePlacesCount(flight.getAvailablePlacesCount())
+                .departureCity(flight.getDepartureCity())
+                .arrivalCity(flight.getArrivalCity())
+                .aircraftName(flight.getAircraft().getName())
+                .aircraftOwnerName(flight.getAircraft().getOwner().getUsername())
                 .build();
     }
 
