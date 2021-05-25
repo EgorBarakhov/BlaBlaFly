@@ -30,13 +30,25 @@
     </label>
     <input type="submit" value="Search">
 </form>
-<div>
-    <#list flightsList as flight>
-        <div>Index: ${flight_index}</div>
-        <div>Flight Aircraft: ${flight.aircraftName}</div>
-        <div>Available Places: ${flight.availablePlacesCount}</div>
-        <div>Pilot: ${flight.aircraftOwnerName}</div>
-    </#list>
-</div>
+<table>
+    <thead>
+    <tr>
+        <th>Departure Time</th>
+        <th>Flight Aircraft</th>
+        <th>Pilot</th>
+        <th>Available Places count</th>
+    </tr>
+    </thead>
+    <tbody>
+        <#list flightsList as flight>
+            <tr>
+                <td>${flight.departureTime}</td>
+                <td>${flight.aircraftName}</td>
+                <td>${flight.aircraftOwnerName}</td>
+                <td>${flight.availablePlacesCount}</td>
+            </tr>
+        </#list>
+    </tbody>
+</table>
 </body>
 </html>
