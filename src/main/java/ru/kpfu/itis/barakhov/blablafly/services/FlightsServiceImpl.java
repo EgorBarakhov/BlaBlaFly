@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import ru.kpfu.itis.barakhov.blablafly.dto.FlightDto;
-import ru.kpfu.itis.barakhov.blablafly.models.City;
 import ru.kpfu.itis.barakhov.blablafly.repositories.FlightsRepository;
 
 import java.util.List;
@@ -13,6 +12,9 @@ import static ru.kpfu.itis.barakhov.blablafly.dto.FlightDto.*;
 
 @Service
 public class FlightsServiceImpl implements FlightsService {
+
+    @Autowired
+    private CitiesService citiesService;
 
     @Autowired
     private FlightsRepository flightsRepository;
@@ -40,8 +42,8 @@ public class FlightsServiceImpl implements FlightsService {
         ));
     }
 
-    private Long transposeDate(Long timestamp, City city) {
-        return (timestamp + city.getShiftFromUtc());
+    private Long transposeDate(Long timestamp, String city) {
+        return (timestamp + citiesService.findByName(city).getShiftFromUtc());
     }
 
 }

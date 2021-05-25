@@ -16,9 +16,9 @@ public class FlightDto {
 
     private Long departureTime;
 
-    private City departureCity;
+    private String departureCity;
 
-    private City arrivalCity;
+    private String arrivalCity;
 
     private Integer availablePlacesCount;
 
@@ -30,8 +30,8 @@ public class FlightDto {
         return FlightDto.builder()
                 .departureTime(flight.getDepartureTimeUtc())
                 .availablePlacesCount(flight.getAvailablePlacesCount())
-                .departureCity(flight.getDepartureCity())
-                .arrivalCity(flight.getArrivalCity())
+                .departureCity(flight.getDepartureCity().getName())
+                .arrivalCity(flight.getArrivalCity().getName())
                 .aircraftName(flight.getAircraft().getName())
                 .aircraftOwnerName(flight.getAircraft().getOwner().getUsername())
                 .build();
