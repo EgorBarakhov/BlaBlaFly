@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import ru.kpfu.itis.barakhov.blablafly.converters.CitiesConverter;
+import ru.kpfu.itis.barakhov.blablafly.converters.FormattedStringToMillisConverter;
+import ru.kpfu.itis.barakhov.blablafly.converters.StringToAircraftConverter;
+import ru.kpfu.itis.barakhov.blablafly.converters.StringToCityConverter;
 import ru.kpfu.itis.barakhov.blablafly.handlers.AuthenticatedInterceptor;
 
 @Configuration
@@ -19,11 +21,23 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(citiesConverter());
+        registry.addConverter(formattedStringToMillisConverter());
+        registry.addConverter(stringToAircraftConverter());
     }
 
     @Bean
-    public CitiesConverter citiesConverter() {
-        return new CitiesConverter();
+    public StringToCityConverter citiesConverter() {
+        return new StringToCityConverter();
+    }
+
+    @Bean
+    public FormattedStringToMillisConverter formattedStringToMillisConverter() {
+        return new FormattedStringToMillisConverter();
+    }
+
+    @Bean
+    public StringToAircraftConverter stringToAircraftConverter() {
+        return new StringToAircraftConverter();
     }
 
     @Bean

@@ -1,9 +1,12 @@
 package ru.kpfu.itis.barakhov.blablafly.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import ru.kpfu.itis.barakhov.blablafly.models.Aircraft;
+import ru.kpfu.itis.barakhov.blablafly.models.City;
 import ru.kpfu.itis.barakhov.blablafly.models.Flight;
 
 import java.util.List;
@@ -11,9 +14,21 @@ import java.util.List;
 @Repository
 public interface FlightsRepository extends JpaRepository<Flight, Long> {
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE Flight flight SET flight.departureCity = :departureCity, flight.departureTimeUtc = :departureTimeUtc, flight.arrivalCity = :arrivalCity, flight.arrivalTimeUtc = :arrivalTimeUtc, flight.aircraft = :aircraft, flight.availablePlacesCount = :availablePlacesCount WHERE flight.id = :id")
+    void update(
+            Long id,
+            City departureCity,
+            Long departureTimeUtc,
+            City arrivalCity,
+            Long arrivalTimeUtc,
+            Aircraft aircraft,
+            Integer availablePlacesCount);
+
     @Query("SELECT flight FROM Flight flight WHERE flight.departureCity.name = :departureCity AND flight.arrivalCity.name = :arrivalCity AND (flight.departureTimeUtc + flight.departureCity.shiftFromUtc) > :departureTime")
-    List<Flight> search(@Param("departureTime") Long departureTime,
-                        @Param("departureCity") String departureCity,
-                        @Param("arrivalCity") String arrivalCity);
+    List<Flight> search(Long departureTime,
+                        String departureCity,
+                        String arrivalCity);
 
 }

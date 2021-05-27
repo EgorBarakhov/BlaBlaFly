@@ -1,14 +1,13 @@
 package ru.kpfu.itis.barakhov.blablafly.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import ru.kpfu.itis.barakhov.blablafly.models.City;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class CityDto {

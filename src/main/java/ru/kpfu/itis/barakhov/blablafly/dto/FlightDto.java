@@ -1,19 +1,22 @@
 package ru.kpfu.itis.barakhov.blablafly.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import ru.kpfu.itis.barakhov.blablafly.models.Flight;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class FlightDto {
 
+    private Long id;
+
     private Long departureTime;
+
+    private Long arrivalTime;
 
     private String departureCity;
 
@@ -21,18 +24,20 @@ public class FlightDto {
 
     private Integer availablePlacesCount;
 
-    private String aircraftName;
+    private String aircraft;
 
-    private String aircraftOwnerName;
+    private String pilot;
 
     public static FlightDto from(Flight flight) {
         return FlightDto.builder()
+                .id(flight.getId())
                 .departureTime(flight.getDepartureTimeUtc())
+                .arrivalTime(flight.getArrivalTimeUtc())
                 .availablePlacesCount(flight.getAvailablePlacesCount())
                 .departureCity(flight.getDepartureCity().getName())
                 .arrivalCity(flight.getArrivalCity().getName())
-                .aircraftName(flight.getAircraft().getName())
-                .aircraftOwnerName(flight.getAircraft().getOwner().getUsername())
+                .aircraft(flight.getAircraft().getName())
+                .pilot(flight.getAircraft().getOwner().getUsername())
                 .build();
     }
 

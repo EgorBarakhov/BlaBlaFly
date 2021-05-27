@@ -14,6 +14,7 @@
     <input type="text" name="username" placeholder="Username" autofocus="autofocus">
     <input type="password" name="password" placeholder="Password">
     <input type="password" name="confirmPassword" placeholder="Confirm password">
+    <input type="submit" value="Ready to Fly!">
     <div>
         <#if errors??>
             <#list errors as error>
@@ -21,7 +22,6 @@
             </#list>
         </#if>
     </div>
-    <input type="submit" value="Ready to Fly!">
 </form>
 <a href="/login">I have an account</a>
 </body>

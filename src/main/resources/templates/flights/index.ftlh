@@ -8,7 +8,7 @@
     <title>Flights | BlaBlaFly</title>
 </head>
 <body>
-<form action="/flights" method="get" modelattribute="flightForm">
+<form action="/flights" method="get" modelattribute="flightSearchForm">
     <label> Departure City:
         <select name="departureCity">
             <option value=""></option>
@@ -25,26 +25,33 @@
             </#list>
         </select>
     </label>
-    <label> Departure Day:
-        <input type="date" name="departureDate">
+    <label> Departure Time:
+        <input type="datetime-local" name="departureTime">
     </label>
     <input type="submit" value="Search">
+</form>
+<form action="/flights/new" method="get">
+    <button type="submit">Create new Flight</button>
 </form>
 <table>
     <thead>
     <tr>
+        <th>Departure City</th>
+        <th>Arrival City</th>
         <th>Departure Time</th>
         <th>Flight Aircraft</th>
         <th>Pilot</th>
-        <th>Available Places count</th>
+        <th>Available Places</th>
     </tr>
     </thead>
     <tbody>
         <#list flightsList as flight>
             <tr>
+                <td>${flight.departureCity}</td>
+                <td>${flight.arrivalCity}</td>
                 <td>${flight.departureTime}</td>
-                <td>${flight.aircraftName}</td>
-                <td>${flight.aircraftOwnerName}</td>
+                <td>${flight.aircraft}</td>
+                <td>${flight.pilot}</td>
                 <td>${flight.availablePlacesCount}</td>
             </tr>
         </#list>

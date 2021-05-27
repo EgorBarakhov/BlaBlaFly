@@ -27,11 +27,10 @@ public class AdminController {
     }
 
     @PostMapping("/admin")
-    public String deleteUser(@RequestParam(required = true, defaultValue = "") Long userId,
-                             @RequestParam(required = true, defaultValue = "") String action,
-                             Model model) {
+    public String deleteUser(@RequestParam(required = true, defaultValue = "") String userId,
+                             @RequestParam(required = true, defaultValue = "") String action) {
         if (action.equals("delete")){
-            if (userService.deleteUser(userId)) {
+            if (userService.deleteUser(Long.parseLong(userId))) {
                 LOG.info("User with id {} had been deleted", userId);
             } else {
                 LOG.warn("Couldn't delete user with id {}", userId);

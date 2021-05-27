@@ -1,22 +1,19 @@
 package ru.kpfu.itis.barakhov.blablafly.dto.forms;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import ru.kpfu.itis.barakhov.blablafly.models.City;
 
-import javax.validation.constraints.NotNull;
-
-@Data
+@Getter
+@Setter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class FlightSearchForm {
 
     private Long departureTime;
 
-    @NotNull
-    private String departureCity;
+    private City departureCity;
 
-    @NotNull
-    private String arrivalCity;
+    private City arrivalCity;
 
 }

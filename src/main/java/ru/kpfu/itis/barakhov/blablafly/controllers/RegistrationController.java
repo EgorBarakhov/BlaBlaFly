@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.kpfu.itis.barakhov.blablafly.dto.forms.UserForm;
-import ru.kpfu.itis.barakhov.blablafly.models.User;
 import ru.kpfu.itis.barakhov.blablafly.services.RegistrationService;
 
 import javax.servlet.ServletException;
@@ -29,7 +28,7 @@ public class RegistrationController {
 
     @GetMapping("/signup")
     public String signUp(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new UserForm());
 
         return "signUp";
     }
@@ -38,7 +37,7 @@ public class RegistrationController {
     public String addUser(@ModelAttribute("userForm") @Valid UserForm userForm, BindingResult bindingResult,
                           Model model, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            LOG.warn("SignUp form has received {} error(s): {}", bindingResult.getErrorCount(), Arrays.toString(bindingResult.getAllErrors().toArray()));
+            LOG.info("SignUp form has received {} error(s): {}", bindingResult.getErrorCount(), Arrays.toString(bindingResult.getAllErrors().toArray()));
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("userForm", userForm);
             return "signUp";
