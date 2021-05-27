@@ -1,6 +1,6 @@
 package ru.kpfu.itis.barakhov.blablafly.validators;
 
-import org.springframework.beans.BeanWrapperImpl;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -19,11 +19,11 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
         try {
-            BeanWrapperImpl beanWrapper = new BeanWrapperImpl(o);
-            final Object example = beanWrapper.getPropertyValue("example");
-            final Object match = beanWrapper.getPropertyValue("match");
+            final Object exampleObject = BeanUtils.getProperty(o, example);
+            final Object matchObject = BeanUtils.getProperty(o, match);
 
-            return example == null && match == null || example != null && example.equals(match);
+            return exampleObject == null && matchObject == null ||
+                    exampleObject != null && exampleObject.equals(matchObject);
         } catch (final Exception exception) {
             // ignore
         }

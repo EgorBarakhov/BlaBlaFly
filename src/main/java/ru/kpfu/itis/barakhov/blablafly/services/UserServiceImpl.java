@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean usernameUniqueness(String username) {
-        return usersRepository.existsByUsername(username);
+        return !usersRepository.existsByUsername(username);
     }
 
     @Override

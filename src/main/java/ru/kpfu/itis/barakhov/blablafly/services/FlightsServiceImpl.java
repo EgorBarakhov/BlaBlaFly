@@ -27,13 +27,13 @@ public class FlightsServiceImpl implements FlightsService {
             return from(flightsRepository.findAll());
         }
 
-        if (flight.getDepartureCity() == null || flight.getArrivalCity() == null) {
-            model.addAttribute("cityError", "Please, specify cities");
-            return from(flightsRepository.findAll());
-        }
+//        if (flight.getDepartureCity() == null || flight.getArrivalCity() == null) {
+//            model.addAttribute("cityError", "Please, specify cities");
+//            return from(flightsRepository.findAll());
+//        }
 
         if (flight.getDepartureTime() == null) {
-            flight.setDepartureTime(System.currentTimeMillis());
+            flight.setDepartureTime(System.currentTimeMillis() * 1000);
         }
 
         return from(flightsRepository.search(

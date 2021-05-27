@@ -19,13 +19,13 @@ import javax.validation.constraints.Size;
 public class UserForm {
 
     @NotNull
-    @Size(min = 5, max = 20, message = "At least 5 and no more than 20 characters")
-    @Pattern(regexp = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$", message = "Invalid username")
+    @Size(min = 5, max = 20, message = "Username should be at least 5 and no more than 20 characters")
+    @Pattern(regexp = "^[a-zA-Z0-9]*([._-](?![._-])|[a-zA-Z0-9])*[a-zA-Z0-9]$", message = "Invalid symbols in username")
     @UniqueUsername
     private String username;
 
     @NotNull
-    @Size(min = 5, max = 20, message = "At least 5 and no more than 20 characters")
+    @Size(min = 5, max = 20, message = "Password should be at least 5 and no more than 20 characters")
     private String password;
 
     private String confirmPassword;

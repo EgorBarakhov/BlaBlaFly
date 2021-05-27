@@ -38,22 +38,19 @@ public class RegistrationController {
     public String addUser(@ModelAttribute("userForm") @Valid UserForm userForm, BindingResult bindingResult,
                           Model model, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            LOG.error("SignUp form has received {} error(s): {}", bindingResult.getErrorCount(), Arrays.toString(bindingResult.getAllErrors().toArray()));
-            model.addAttribute("errors", "Something went wrong. Product owner is notified about this incident");
+            LOG.warn("SignUp form has received {} error(s): {}", bindingResult.getErrorCount(), Arrays.toString(bindingResult.getAllErrors().toArray()));
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            model.addAttribute("userForm", userForm);
             return "signUp";
         }
-        if (!registrationService.signUp(userForm)){
-            model.addAttribute("usernameError", "The username is already taken");
-            return "signUp";
-        } else {
-            model.addAttribute("success", "Your account has been created!");
-            LOG.info("Created new user with name {}", userForm.getUsername());
-            try {
-                httpServletRequest.login(userForm.getUsername(), userForm.getPassword());
-                return "redirect:/flights";
-            } catch (ServletException exception) {
-                return "redirect:/login";
-            }
+        registrationService.signUp(userForm);
+        model.addAttribute("success", "Your account has been created!");
+        LOG.info("Created new user with name {}", userForm.getUsername());
+        try {
+            httpServletRequest.login(userForm.getUsername(), userForm.getPassword());
+            return "redirect:/flights";
+        } catch (ServletException exception) {
+            return "redirect:/login";
         }
     }
 

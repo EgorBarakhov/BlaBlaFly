@@ -12,14 +12,15 @@
 <form action="/signup" method="post" modelattribute="userForm">
     <h4>Create an account on BlaBlaFly</h4>
     <input type="text" name="username" placeholder="Username" autofocus="autofocus">
-    <#if usernameError??>
-        <div>${usernameError}</div>
-    </#if>
     <input type="password" name="password" placeholder="Password">
-    <#if passwordError??>
-        <div>${passwordError}</div>
-    </#if>
     <input type="password" name="confirmPassword" placeholder="Confirm password">
+    <div>
+        <#if errors??>
+            <#list errors as error>
+                <li>${error.getDefaultMessage()}</li>
+            </#list>
+        </#if>
+    </div>
     <input type="submit" value="Ready to Fly!">
 </form>
 <a href="/login">I have an account</a>
