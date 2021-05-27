@@ -16,19 +16,22 @@
 </form>
 <dl>
     <dt>Departure Time: </dt>
-    <dd>${flight.departureTime}</dd>
+    <dd>${flight.displayTime(flight.departureTime)}</dd>
 
     <dt>Departure City: </dt>
     <dd>${flight.departureCity}</dd>
 
     <dt>Arrival Time: </dt>
-    <dd>${flight.arrivalTime}</dd>
+    <dd>${flight.displayTime(flight.arrivalTime)}</dd>
 
     <dt>Arrival City: </dt>
     <dd>${flight.arrivalCity}</dd>
 
     <dt>Available Places: </dt>
     <dd>${flight.availablePlacesCount}</dd>
+
+    <dt>Ticket Price: </dt>
+    <dd>${flight.ticketPrice} ${flight.ticketCurrency}</dd>
 
     <dt>Aircraft Name: </dt>
     <dd>${flight.aircraft}</dd>

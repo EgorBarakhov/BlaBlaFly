@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ru.kpfu.itis.barakhov.blablafly.converters.FormattedStringToMillisConverter;
 import ru.kpfu.itis.barakhov.blablafly.converters.StringToAircraftConverter;
 import ru.kpfu.itis.barakhov.blablafly.converters.StringToCityConverter;
+import ru.kpfu.itis.barakhov.blablafly.converters.StringToCurrencyConverter;
 import ru.kpfu.itis.barakhov.blablafly.handlers.AuthenticatedInterceptor;
 
 @Configuration
@@ -23,6 +24,12 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addConverter(citiesConverter());
         registry.addConverter(formattedStringToMillisConverter());
         registry.addConverter(stringToAircraftConverter());
+        registry.addConverter(stringToCurrencyConverter());
+    }
+
+    @Bean
+    public StringToCurrencyConverter stringToCurrencyConverter() {
+        return new StringToCurrencyConverter();
     }
 
     @Bean

@@ -56,6 +56,8 @@ public class FlightsServiceImpl implements FlightsService {
                 .arrivalTimeUtc(flight.getArrivalTimeUtc())
                 .departureTimeUtc(flight.getDepartureTimeUtc())
                 .availablePlacesCount(flight.getAvailablePlacesCount())
+                .ticketPrice(flight.getTicketPrice())
+                .ticketCurrency(flight.getTicketCurrency())
                 .build();
     }
 
@@ -77,6 +79,8 @@ public class FlightsServiceImpl implements FlightsService {
                 .departureCity(flightForm.getDepartureCity())
                 .arrivalCity(flightForm.getArrivalCity())
                 .availablePlacesCount(flightForm.getAvailablePlacesCount())
+                .ticketPrice(flightForm.getTicketPrice())
+                .ticketCurrency(flightForm.getTicketCurrency().getDisplayName())
                 .aircraft(flightForm.getAircraft())
                 .build();
         flightsRepository.save(flight);

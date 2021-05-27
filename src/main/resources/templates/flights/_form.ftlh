@@ -30,6 +30,16 @@
                 </#list>
             </select>
         </label>
+        <label>Price:
+            <input type="number" name="ticketPrice">
+        </label>
+        <label> Currency:
+            <select name="ticketCurrency">
+                <option value=""></option>
+                <option value="USD">USD</option>
+                <option value="RUB">RUB</option>
+            </select>
+        </label>
         <input type="hidden" name="availablePlacesCount" value="12">
         <input type="submit" value="Save">
         <div>

@@ -3,6 +3,8 @@ package ru.kpfu.itis.barakhov.blablafly.dto;
 import lombok.*;
 import ru.kpfu.itis.barakhov.blablafly.models.Flight;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +13,8 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor
 public class FlightDto {
+
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     private Long id;
 
@@ -51,6 +55,12 @@ public class FlightDto {
         return flights.stream()
                 .map(FlightDto::from)
                 .collect(Collectors.toList());
+    }
+
+    public String displayTime(Long time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time);
+        return simpleDateFormat.format(calendar.getTime());
     }
 
 }

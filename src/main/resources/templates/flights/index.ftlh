@@ -52,12 +52,12 @@
             <tr>
                 <td>${flight.departureCity}</td>
                 <td>${flight.arrivalCity}</td>
-                <td>${flight.departureTime}</td>
-                <td>${flight.arrivalTime}</td>
+                <td>${flight.displayTime(flight.departureTime)}</td>
+                <td>${flight.displayTime(flight.arrivalTime)}</td>
                 <td>${flight.aircraft}</td>
                 <td>${flight.pilot}</td>
                 <td>${flight.availablePlacesCount}</td>
-                <td></td>
+                <td>${flight.ticketPrice} ${flight.ticketCurrency}</td>
                 <td><a href="/flights/${flight.id}">Buy a Ticket</a></td>
             </tr>
         </#list>
