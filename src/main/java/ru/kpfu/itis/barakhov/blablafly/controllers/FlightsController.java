@@ -97,13 +97,19 @@ public class FlightsController {
 
     @GetMapping("/flights/{id}/edit")
     public String editFlight(@PathVariable("id") String id, Model model, Principal principal) {
+        UserDetails currentUser = userService.loadUserByUsername(principal.getName());
         try {
             Flight flightToEdit = flightsService.findById(Long.parseLong(id));
-            UserDetails currentUser = userService.loadUserByUsername(principal.getName());
-            model.addAttribute("flightForm", flightsService.convertToForm(flightToEdit));
-            model.addAttribute("flight", FlightDto.from(flightToEdit));
-            model.addAttribute("citiesList", citiesService.findAll());
-            model.addAttribute("aircraftsList", aircraftsService.findOwned(currentUser));
+            if (flightToEdit.getAircraft().getOwner().getUsername().equals(currentUser.getUsername())) {
+                model.addAttribute("success", "The flight has been updated");
+                model.addAttribute("flightForm", flightsService.convertToForm(flightToEdit));
+                model.addAttribute("flight", FlightDto.from(flightToEdit));
+                model.addAttribute("citiesList", citiesService.findAll());
+                model.addAttribute("aircraftsList", aircraftsService.findOwned(currentUser));
+            } else {
+                model.addAttribute("error", "You don't have access to edit this flight!");
+                return "redirect:/flights/" + id;
+            }
             return "flights/edit";
         } catch (IllegalArgumentException exception) {
             throw new FlightNotFoundException("Flight with id " + id + " did not found", exception);
@@ -128,8 +134,12 @@ public class FlightsController {
                 return "/flights/" + id + "/edit";
             } else {
                 try {
-                    flightsService.updateFlight(flightToEdit, flightForm);
-                    model.addAttribute("success", "The flight has been updated");
+                    if (flightToEdit.getAircraft().getOwner().getUsername().equals(currentUser.getUsername())) {
+                        flightsService.updateFlight(flightToEdit, flightForm);
+                        model.addAttribute("success", "The flight has been updated");
+                    } else {
+                        model.addAttribute("error", "You don't have access to edit this flight!");
+                    }
                     return "redirect:/flights/" + id;
                 } catch (Exception exception) {
                     LOG.warn("User {} couldn't create flight {}", currentUser, flightForm);
@@ -142,11 +152,16 @@ public class FlightsController {
     }
 
     @PostMapping("/flights/{id}")
-    public String deleteFlight(@PathVariable("id") String id, Principal principal) {
+    public String deleteFlight(@PathVariable("id") String id, Principal principal, Model model) {
         UserDetails currentUser = userService.loadUserByUsername(principal.getName());
         try {
             Flight flightToDelete = flightsService.findById(Long.parseLong(id));
-            flightsService.deleteFlight(flightToDelete);
+            if (flightToDelete.getAircraft().getOwner().getUsername().equals(currentUser.getUsername())) {
+                flightsService.deleteFlight(flightToDelete);
+            } else {
+                model.addAttribute("error", "You don't have access to delete this flight!");
+                return "redirect:/flights/" + id;
+            }
         } catch (Exception exception) {
             LOG.warn("User {} couldn't delete flight with id {}", currentUser, id);
             throw new FlightSavingException("Couldn't delete flight", exception);

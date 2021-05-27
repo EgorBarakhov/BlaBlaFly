@@ -16,6 +16,11 @@ public interface FlightsRepository extends JpaRepository<Flight, Long> {
 
     @Transactional
     @Modifying
+    @Query("UPDATE Flight flight SET flight.availablePlacesCount = flight.availablePlacesCount - 1")
+    void decrementAvailablePlacesCount(Flight flight);
+
+    @Transactional
+    @Modifying
     @Query("UPDATE Flight flight SET flight.departureCity = :departureCity, flight.departureTimeUtc = :departureTimeUtc, flight.arrivalCity = :arrivalCity, flight.arrivalTimeUtc = :arrivalTimeUtc, flight.aircraft = :aircraft, flight.availablePlacesCount = :availablePlacesCount WHERE flight.id = :id")
     void update(
             Long id,

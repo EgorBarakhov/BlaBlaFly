@@ -31,7 +31,7 @@
             </select>
         </label>
         <input type="hidden" name="availablePlacesCount" value="12">
-        <input type="submit" value="Create">
+        <input type="submit" value="Save">
         <div>
             <#if errors??>
                 <#list errors as error>

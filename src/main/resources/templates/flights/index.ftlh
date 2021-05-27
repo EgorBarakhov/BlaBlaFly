@@ -39,9 +39,12 @@
         <th>Departure City</th>
         <th>Arrival City</th>
         <th>Departure Time</th>
+        <th>Arrival Time</th>
         <th>Flight Aircraft</th>
         <th>Pilot</th>
         <th>Available Places</th>
+        <th>Ticket Price</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -50,9 +53,12 @@
                 <td>${flight.departureCity}</td>
                 <td>${flight.arrivalCity}</td>
                 <td>${flight.departureTime}</td>
+                <td>${flight.arrivalTime}</td>
                 <td>${flight.aircraft}</td>
                 <td>${flight.pilot}</td>
                 <td>${flight.availablePlacesCount}</td>
+                <td></td>
+                <td><a href="/flights/${flight.id}">Buy a Ticket</a></td>
             </tr>
         </#list>
     </tbody>

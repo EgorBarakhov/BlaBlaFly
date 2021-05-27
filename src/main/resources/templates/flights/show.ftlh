@@ -35,6 +35,10 @@
 
     <dt>Pilot Username: </dt>
     <dd>${flight.pilot}</dd>
+
 </dl>
+<form action="/flights/${flight.id}/ticket" method="post">
+    <button type="submit">Buy a Ticket</button>
+</form>
 </body>
 </html>

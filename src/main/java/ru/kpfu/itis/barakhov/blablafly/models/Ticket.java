@@ -19,10 +19,6 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Float price;
-
-    private String currency;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "flight_id", nullable = false)
     private Flight flight;
@@ -30,13 +26,5 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "holder_id",nullable = false)
     private User holder;
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency.getCurrencyCode();
-    }
-
-    public Currency getCurrency() {
-        return Currency.getInstance(currency);
-    }
 
 }

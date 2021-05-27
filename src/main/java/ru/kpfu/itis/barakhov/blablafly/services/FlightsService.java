@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface FlightsService {
 
+    void bookTicket(Flight flight);
+
     void deleteFlight(Flight flight);
 
     void updateFlight(Flight flight, FlightForm flightForm);

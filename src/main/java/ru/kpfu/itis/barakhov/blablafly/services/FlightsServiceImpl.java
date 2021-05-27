@@ -24,6 +24,11 @@ public class FlightsServiceImpl implements FlightsService {
     private FlightsRepository flightsRepository;
 
     @Override
+    public void bookTicket(Flight flight) {
+        flightsRepository.decrementAvailablePlacesCount(flight);
+    }
+
+    @Override
     public void deleteFlight(Flight flight) {
         flightsRepository.delete(flight);
     }

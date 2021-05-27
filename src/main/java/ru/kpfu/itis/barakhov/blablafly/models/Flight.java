@@ -3,6 +3,7 @@ package ru.kpfu.itis.barakhov.blablafly.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Currency;
 import java.util.Set;
 
 @Getter
@@ -24,6 +25,10 @@ public class Flight {
 
     private Integer availablePlacesCount;
 
+    private Float ticketPrice;
+
+    private String ticketCurrency;
+
     @OneToMany(mappedBy = "flight")
     private Set<Ticket> tickets;
 
@@ -38,5 +43,13 @@ public class Flight {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "aircraft_id", nullable = false)
     private Aircraft aircraft;
+
+    public void setTicketCurrency(Currency currency) {
+        this.ticketCurrency = currency.getCurrencyCode();
+    }
+
+    public Currency getTicketCurrency() {
+        return Currency.getInstance(ticketCurrency);
+    }
 
 }

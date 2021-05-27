@@ -24,6 +24,10 @@ public class FlightDto {
 
     private Integer availablePlacesCount;
 
+    private Float ticketPrice;
+
+    private String ticketCurrency;
+
     private String aircraft;
 
     private String pilot;
@@ -32,10 +36,12 @@ public class FlightDto {
         return FlightDto.builder()
                 .id(flight.getId())
                 .departureTime(flight.getDepartureTimeUtc())
-                .arrivalTime(flight.getArrivalTimeUtc())
-                .availablePlacesCount(flight.getAvailablePlacesCount())
                 .departureCity(flight.getDepartureCity().getName())
+                .arrivalTime(flight.getArrivalTimeUtc())
                 .arrivalCity(flight.getArrivalCity().getName())
+                .availablePlacesCount(flight.getAvailablePlacesCount())
+                .ticketPrice(flight.getTicketPrice())
+                .ticketCurrency(flight.getTicketCurrency().getDisplayName())
                 .aircraft(flight.getAircraft().getName())
                 .pilot(flight.getAircraft().getOwner().getUsername())
                 .build();
