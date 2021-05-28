@@ -42,7 +42,7 @@
                 <option value="RUB">RUB</option>
             </select>
         </label>
-        <input type="hidden" name="availablePlacesCount" value="0">
+        <input type="hidden" name="availablePlacesCount" id="available-places-count" value="85">
         <button type="submit" class="btn btn-primary">Save</button>
         <div>
             <#if errors??>

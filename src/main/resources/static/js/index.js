@@ -1,6 +1,7 @@
 $(function() {
     showCityName($('#city-name')[0].innerText);
 
+
     function showCityName(cityName) {
         var apiKey = $('#api-key')[0].value;
 
