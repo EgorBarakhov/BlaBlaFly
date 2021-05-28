@@ -15,13 +15,13 @@ import java.util.List;
 public interface FlightsRepository extends JpaRepository<Flight, Long> {
     @Transactional
     @Modifying
-    @Query("UPDATE Flight flight SET flight.availablePlacesCount = flight.availablePlacesCount + 1")
-    void incrementAvailablePlacesCount(Flight flight);
+    @Query("UPDATE Flight flight SET flight.availablePlacesCount = flight.availablePlacesCount + 1 WHERE flight.id = :flightId")
+    void incrementAvailablePlacesCount(Long flightId);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Flight flight SET flight.availablePlacesCount = flight.availablePlacesCount - 1")
-    void decrementAvailablePlacesCount(Flight flight);
+    @Query("UPDATE Flight flight SET flight.availablePlacesCount = flight.availablePlacesCount - 1 WHERE flight.id = :flightId")
+    void decrementAvailablePlacesCount(Long flightId);
 
     @Transactional
     @Modifying

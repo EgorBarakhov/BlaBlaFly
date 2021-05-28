@@ -23,7 +23,7 @@ public class FlightsServiceImpl implements FlightsService {
 
     @Override
     public void bookTicket(Flight flight) {
-        flightsRepository.decrementAvailablePlacesCount(flight);
+        flightsRepository.decrementAvailablePlacesCount(flight.getId());
     }
 
     @Override
