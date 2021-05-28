@@ -15,11 +15,13 @@ public interface FlightsService {
 
     void deleteFlight(Flight flight);
 
-    void updateFlight(Flight flight, FlightForm flightForm);
+    Flight updateFlight(Flight flight, FlightForm flightForm);
 
     FlightForm convertToForm(Flight flight);
 
     Flight findById(Long id) throws IllegalArgumentException;
+
+    List<FlightDto> searchFlights(FlightSearchForm flightSearchForm);
 
     List<FlightDto> searchFlights(FlightSearchForm flightSearchForm, Model model);
 

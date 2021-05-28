@@ -32,8 +32,8 @@ public class FlightsServiceImpl implements FlightsService {
     }
 
     @Override
-    public void updateFlight(Flight flight, FlightForm flightForm) {
-        flightsRepository.update(
+    public Flight updateFlight(Flight flight, FlightForm flightForm) {
+        return flightsRepository.update(
                 flight.getId(),
                 flightForm.getDepartureCity(),
                 flightForm.getDepartureTimeUtc(),
@@ -95,6 +95,23 @@ public class FlightsServiceImpl implements FlightsService {
 
         if (cityIsNotSpecified(flightSearchForm)) {
             model.addAttribute("error", "Specify cities to search");
+            return from(flightsRepository.findAll());
+        }
+
+        if (flightSearchForm.getDepartureTime() == null) {
+            flightSearchForm.setDepartureTime(System.currentTimeMillis());
+        }
+
+        return from(flightsRepository.search(
+                transposeDate(flightSearchForm.getDepartureTime(), flightSearchForm.getDepartureCity()),
+                flightSearchForm.getDepartureCity().getName(),
+                flightSearchForm.getArrivalCity().getName()
+        ));
+    }
+
+    @Override
+    public List<FlightDto> searchFlights(FlightSearchForm flightSearchForm) {
+        if (formNotFilled(flightSearchForm) || cityIsNotSpecified(flightSearchForm)) {
             return from(flightsRepository.findAll());
         }
 
