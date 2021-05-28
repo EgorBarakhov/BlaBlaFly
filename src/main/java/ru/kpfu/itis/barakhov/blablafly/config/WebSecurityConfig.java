@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.kpfu.itis.barakhov.blablafly.services.UserService;
 
 @Configuration
@@ -25,8 +26,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf()
-                    .disable()
                 .authorizeRequests()
                     .antMatchers("/admin/**/*").hasRole("ADMIN")
                     .antMatchers("/signup", "/login", "/", "resources/**").permitAll()
@@ -42,6 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .deleteCookies("JSESSIONID")
                     .permitAll()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
                     .logoutSuccessUrl("/");
     }
 

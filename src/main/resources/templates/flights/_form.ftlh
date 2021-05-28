@@ -43,6 +43,7 @@
             </select>
         </label>
         <input type="hidden" name="availablePlacesCount" id="available-places-count" value="85">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <button type="submit" class="btn btn-primary">Save</button>
         <div>
             <#if errors??>

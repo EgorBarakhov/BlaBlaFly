@@ -27,6 +27,7 @@
                         <form action="<@spring.url "/admin"/>" method="post" modelattribute="deleteUser">
                             <input type="hidden" name="userId" value="${account.id}">
                             <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>

@@ -16,6 +16,7 @@
     <input type="text" name="username" placeholder="Username" autofocus="autofocus">
     <input type="password" name="password" placeholder="Password">
     <input type="password" name="confirmPassword" placeholder="Confirm password">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <button type="submit" class="btn btn-primary">Ready to Fly!</button>
     <div>
         <#if errors??>

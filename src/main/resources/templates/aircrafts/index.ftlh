@@ -27,6 +27,7 @@
     </div>
     <div class="col-3">
         <form action="<@spring.url "/aircrafts/new" />" method="get">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button type="submit" class="btn btn-primary">Create new Aircraft</button>
         </form>
     </div>

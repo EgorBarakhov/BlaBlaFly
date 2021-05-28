@@ -1,5 +1,6 @@
 <#macro aircraftForm action errors>
     <form action="${action}" method="post" modelattribute="aircraftForm">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <label>Name:
             <input type="text" name="name">
         </label>

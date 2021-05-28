@@ -15,6 +15,7 @@
     <h4>Log In</h4>
     <input type="text" name="username" placeholder="Username" autofocus="autofocus">
     <input type="password" name="password" placeholder="Password">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <#if error??>
         <div>${error}</div>
     </#if>

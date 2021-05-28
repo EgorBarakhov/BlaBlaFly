@@ -6,11 +6,13 @@
 
     <div class="col-1">
         <form action="<@spring.url "/flights/${flight.id}/edit"/>" method="get">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button type="submit" class="btn btn-primary">Edit</button>
         </form>
     </div>
     <div class="col-1">
         <form action="<@spring.url "/flights/${flight.id}"/>" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </div>
@@ -57,6 +59,7 @@
     </div>
 </div>
 <form action="<@spring.url "/flights/${flight.id}/ticket"/>" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <button type="submit" class="btn btn-success">Buy a Ticket</button>
 </form>
 

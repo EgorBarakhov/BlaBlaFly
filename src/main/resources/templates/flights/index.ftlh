@@ -24,11 +24,13 @@
         <label> Departure Time:
             <input type="datetime-local" name="departureTime">
         </label>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
 <div class="col-2">
     <form action="<@spring.url "/flights/new"/>" method="get">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <button type="submit" class="btn btn-primary">Create new Flight</button>
     </form>
 </div>
