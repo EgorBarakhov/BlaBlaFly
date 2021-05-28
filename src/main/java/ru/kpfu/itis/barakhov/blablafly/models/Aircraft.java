@@ -13,7 +13,6 @@ import java.util.Set;
 @Entity
 @Table(name = "aircraft")
 public class Aircraft {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,5 +29,4 @@ public class Aircraft {
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
-
 }

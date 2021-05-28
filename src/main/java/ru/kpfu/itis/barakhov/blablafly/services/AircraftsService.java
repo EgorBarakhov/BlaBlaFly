@@ -14,5 +14,4 @@ public interface AircraftsService {
     Aircraft findByName(String name);
 
     List<AircraftDto> findOwnedBy(UserDetails currentUser);
-
 }

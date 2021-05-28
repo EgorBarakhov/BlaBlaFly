@@ -3,8 +3,6 @@ package ru.kpfu.itis.barakhov.blablafly.models;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Currency;
 
 @Getter
 @Setter
@@ -14,7 +12,6 @@ import java.util.Currency;
 @Entity
 @Table(name = "ticket")
 public class Ticket {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,5 +23,4 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "holder_id",nullable = false)
     private User holder;
-
 }

@@ -39,7 +39,7 @@ public class TicketsController {
         UserDetails currentUser = userService.loadUserByUsername(principal.getName());
         ticketsService.bookTicket(Long.parseLong(id), currentUser);
         model.addAttribute("success", "The ticket has been booked");
+        LOG.info("{} booked new ticket to the flight with id {}", currentUser.getUsername(), id);
         return "redirect:/tickets";
     }
-
 }

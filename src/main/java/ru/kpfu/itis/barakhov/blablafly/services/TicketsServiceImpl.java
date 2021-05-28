@@ -15,7 +15,6 @@ import static ru.kpfu.itis.barakhov.blablafly.dto.TicketDto.*;
 
 @Service
 public class TicketsServiceImpl implements TicketsService {
-
     @Autowired
     private UserService userService;
 

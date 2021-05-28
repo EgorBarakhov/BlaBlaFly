@@ -1,7 +1,6 @@
 package ru.kpfu.itis.barakhov.blablafly.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,7 +18,6 @@ import static ru.kpfu.itis.barakhov.blablafly.dto.FlightDto.*;
 
 @Service
 public class FlightsServiceImpl implements FlightsService {
-
     @Autowired
     private FlightsRepository flightsRepository;
 

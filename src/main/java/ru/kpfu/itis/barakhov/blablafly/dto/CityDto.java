@@ -25,5 +25,4 @@ public class CityDto {
                 .map(CityDto::from)
                 .collect(Collectors.toList());
     }
-
 }

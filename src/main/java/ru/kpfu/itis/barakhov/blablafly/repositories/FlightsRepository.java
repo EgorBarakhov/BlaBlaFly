@@ -9,11 +9,14 @@ import ru.kpfu.itis.barakhov.blablafly.models.Aircraft;
 import ru.kpfu.itis.barakhov.blablafly.models.City;
 import ru.kpfu.itis.barakhov.blablafly.models.Flight;
 
-import java.util.Currency;
 import java.util.List;
 
 @Repository
 public interface FlightsRepository extends JpaRepository<Flight, Long> {
+    @Transactional
+    @Modifying
+    @Query("UPDATE Flight flight SET flight.availablePlacesCount = flight.availablePlacesCount + 1")
+    void incrementAvailablePlacesCount(Flight flight);
 
     @Transactional
     @Modifying
@@ -38,5 +41,4 @@ public interface FlightsRepository extends JpaRepository<Flight, Long> {
     List<Flight> search(Long departureTime,
                         String departureCity,
                         String arrivalCity);
-
 }

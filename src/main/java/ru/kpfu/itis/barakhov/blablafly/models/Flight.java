@@ -15,7 +15,6 @@ import java.util.Set;
 @Entity
 @Table(name = "flight")
 public class Flight {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -52,5 +51,4 @@ public class Flight {
     public Currency getTicketCurrency() {
         return Currency.getInstance(ticketCurrency);
     }
-
 }

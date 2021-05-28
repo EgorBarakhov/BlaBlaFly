@@ -6,7 +6,6 @@ import ru.kpfu.itis.barakhov.blablafly.models.City;
 import ru.kpfu.itis.barakhov.blablafly.services.CitiesService;
 
 public class StringToCityConverter implements Converter<String, City> {
-
     @Autowired
     private CitiesService citiesService;
 
@@ -14,5 +13,4 @@ public class StringToCityConverter implements Converter<String, City> {
     public City convert(String s) {
         return citiesService.findByName(s);
     }
-
 }

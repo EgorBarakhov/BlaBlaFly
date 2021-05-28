@@ -2,7 +2,6 @@ package ru.kpfu.itis.barakhov.blablafly.dto;
 
 import lombok.*;
 import ru.kpfu.itis.barakhov.blablafly.models.Aircraft;
-import ru.kpfu.itis.barakhov.blablafly.models.City;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,5 +32,4 @@ public class AircraftDto {
                 .map(AircraftDto::from)
                 .collect(Collectors.toList());
     }
-
 }

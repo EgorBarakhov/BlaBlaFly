@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -80,5 +79,4 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
-
 }

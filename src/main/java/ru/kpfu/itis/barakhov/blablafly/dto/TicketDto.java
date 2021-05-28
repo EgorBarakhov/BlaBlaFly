@@ -37,5 +37,4 @@ public class TicketDto {
                 .map(TicketDto::from)
                 .collect(Collectors.toList());
     }
-
 }

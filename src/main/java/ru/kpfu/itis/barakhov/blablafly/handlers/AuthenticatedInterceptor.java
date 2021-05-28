@@ -35,7 +35,6 @@ public class AuthenticatedInterceptor implements HandlerInterceptor {
 
             return false;
         }
-
         return true;
     }
 
@@ -46,11 +45,9 @@ public class AuthenticatedInterceptor implements HandlerInterceptor {
             return false;
         }
         return authentication.isAuthenticated();
-
     }
 
     private boolean requestedHomePages(HttpServletRequest httpServletRequest) {
         return Arrays.asList(HOME_PAGES).contains(httpServletRequest.getRequestURI());
     }
-
 }

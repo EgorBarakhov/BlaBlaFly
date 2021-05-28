@@ -38,5 +38,4 @@ public class FlightForm {
 
     @NotNull(message = "Aircraft must not be null")
     private Aircraft aircraft;
-
 }

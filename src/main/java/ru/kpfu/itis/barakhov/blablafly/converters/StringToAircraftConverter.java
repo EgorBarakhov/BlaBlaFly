@@ -6,7 +6,6 @@ import ru.kpfu.itis.barakhov.blablafly.models.Aircraft;
 import ru.kpfu.itis.barakhov.blablafly.services.AircraftsService;
 
 public class StringToAircraftConverter implements Converter<String, Aircraft> {
-
     @Autowired
     private AircraftsService aircraftsService;
 

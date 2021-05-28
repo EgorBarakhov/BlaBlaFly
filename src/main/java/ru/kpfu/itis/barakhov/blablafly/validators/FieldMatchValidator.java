@@ -8,6 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 
     private String example;
+
     private String match;
 
     @Override
@@ -29,5 +30,4 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         }
         return true;
     }
-
 }

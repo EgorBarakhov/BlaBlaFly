@@ -1,5 +1,7 @@
 package ru.kpfu.itis.barakhov.blablafly.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ExceptionHandlerController {
 
+    private final Logger LOG = LoggerFactory.getLogger(ExceptionHandlerController.class);
+
     @ExceptionHandler(FlightNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ModelAndView notFound(HttpServletRequest httpServletRequest, Exception exception) {
@@ -21,6 +25,7 @@ public class ExceptionHandlerController {
         modelAndView.addObject("url", httpServletRequest.getRequestURL());
         modelAndView.addObject("message", exception.getMessage());
         modelAndView.setViewName("error");
+        LOG.warn("Catch a NOT_FOUND {} on url {}", exception.getMessage(), httpServletRequest.getRequestURL());
         return modelAndView;
     }
 
@@ -31,6 +36,7 @@ public class ExceptionHandlerController {
         modelAndView.addObject("url", httpServletRequest.getRequestURL());
         modelAndView.addObject("message", exception.getMessage());
         modelAndView.setViewName("error");
+        LOG.warn("Catch an INTERNAL_SERVER_ERROR {} on url {}", exception.getMessage(), httpServletRequest.getRequestURL());
         return modelAndView;
     }
 }

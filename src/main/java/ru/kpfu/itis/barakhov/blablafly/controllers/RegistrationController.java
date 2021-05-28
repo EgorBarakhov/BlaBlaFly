@@ -21,6 +21,7 @@ import java.util.Arrays;
 @Log4j2
 @Controller
 public class RegistrationController {
+
     private final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
 
     @Autowired
@@ -52,5 +53,4 @@ public class RegistrationController {
             return "redirect:/login";
         }
     }
-
 }

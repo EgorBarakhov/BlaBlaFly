@@ -12,7 +12,6 @@ import static ru.kpfu.itis.barakhov.blablafly.dto.CityDto.*;
 
 @Service
 public class CitiesServiceImpl implements CitiesService {
-
     @Autowired
     private CitiesRepository citiesRepository;
 
@@ -25,5 +24,4 @@ public class CitiesServiceImpl implements CitiesService {
     public City findByName(String name) {
         return citiesRepository.findByName(name);
     }
-
 }

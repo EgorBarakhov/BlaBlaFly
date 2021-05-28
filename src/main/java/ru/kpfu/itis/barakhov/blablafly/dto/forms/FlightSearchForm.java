@@ -15,5 +15,4 @@ public class FlightSearchForm {
     private City departureCity;
 
     private City arrivalCity;
-
 }

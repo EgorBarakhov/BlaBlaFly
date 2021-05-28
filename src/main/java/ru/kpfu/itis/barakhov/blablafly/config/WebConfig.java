@@ -13,7 +13,6 @@ import ru.kpfu.itis.barakhov.blablafly.handlers.AuthenticatedInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticatedInterceptor());

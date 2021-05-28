@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.kpfu.itis.barakhov.blablafly.dto.forms.AircraftForm;
 import ru.kpfu.itis.barakhov.blablafly.dto.forms.FlightForm;
 import ru.kpfu.itis.barakhov.blablafly.exceptions.AircraftSavingException;
-import ru.kpfu.itis.barakhov.blablafly.exceptions.FlightSavingException;
 import ru.kpfu.itis.barakhov.blablafly.services.AircraftsService;
 import ru.kpfu.itis.barakhov.blablafly.services.UserService;
 
@@ -58,6 +57,7 @@ public class AircraftsController {
             try {
                 aircraftsService.createAircraft(aircraftForm, currentUser);
                 model.addAttribute("success", "The aircraft has been created");
+                LOG.info("Created new aircraft from form {}", aircraftForm);
                 return "redirect:/aircrafts";
             } catch (Exception exception) {
                 LOG.warn("User {} couldn't create aircraft {}", currentUser, aircraftForm);

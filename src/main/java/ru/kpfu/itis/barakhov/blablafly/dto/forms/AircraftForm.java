@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AircraftForm {
-
     @Column(unique = true)
     @NotNull(message = "Name must not be null")
     private String name;
@@ -22,5 +21,4 @@ public class AircraftForm {
 
     @NotNull(message = "Capacity must not be null")
     private Integer capacity;
-
 }

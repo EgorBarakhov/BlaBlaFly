@@ -62,5 +62,4 @@ public class FlightDto {
         calendar.setTimeInMillis(time);
         return simpleDateFormat.format(calendar.getTime());
     }
-
 }

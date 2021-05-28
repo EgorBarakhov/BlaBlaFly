@@ -8,7 +8,6 @@ import ru.kpfu.itis.barakhov.blablafly.models.User;
 
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
-
     @Autowired
     private UserService userService;
 
@@ -21,5 +20,4 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .build();
         return userService.saveUser(user);
     }
-
 }

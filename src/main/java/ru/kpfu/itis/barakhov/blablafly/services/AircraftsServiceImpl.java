@@ -15,7 +15,6 @@ import static ru.kpfu.itis.barakhov.blablafly.dto.AircraftDto.*;
 
 @Service
 public class AircraftsServiceImpl implements AircraftsService {
-
     @Autowired
     private AircraftsRepository aircraftsRepository;
 

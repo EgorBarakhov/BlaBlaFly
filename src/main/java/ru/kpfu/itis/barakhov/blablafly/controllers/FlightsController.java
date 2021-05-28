@@ -76,6 +76,7 @@ public class FlightsController {
             try {
                 FlightDto flight = flightsService.createFlight(flightForm, currentUser);
                 model.addAttribute("success", "The flight has been created");
+                LOG.info("{} created new flight from form {}", currentUser.getUsername(), flightForm);
                 return "redirect:/flights/" + flight.getId();
             } catch (Exception exception) {
                 LOG.warn("User {} couldn't create flight {}", currentUser, flightForm);
@@ -88,6 +89,7 @@ public class FlightsController {
     public String showFlight(@PathVariable("id") String id, Model model) {
         try {
             FlightDto flight = FlightDto.from(flightsService.findById(Long.parseLong(id)));
+            model.addAttribute("apiKey", System.getenv("API_KEY"));
             model.addAttribute("flight", flight);
             return "flights/show";
         } catch (IllegalArgumentException exception) {
@@ -109,9 +111,11 @@ public class FlightsController {
                 return "flights/edit";
             } else {
                 model.addAttribute("error", "You don't have access to edit this flight!");
+                LOG.info("{} tried to access the flight with id {} owned by {}", currentUser, id, flightToEdit.getAircraft().getOwner().getUsername());
                 return "redirect:/flights/" + id;
             }
         } catch (IllegalArgumentException exception) {
+            LOG.info("{} tried to access the empty flight with id {}", currentUser.getUsername(), id);
             throw new FlightNotFoundException("Flight with id " + id + " did not found", exception);
         }
     }
@@ -136,8 +140,10 @@ public class FlightsController {
                 try {
                     if (flightToEdit.getAircraft().getOwner().getUsername().equals(currentUser.getUsername())) {
                         flightsService.updateFlight(flightToEdit, flightForm);
+                        LOG.info("{} updated flight with id {}", currentUser, id);
                         model.addAttribute("success", "The flight has been updated");
                     } else {
+                        LOG.info("{} tried to edit the flight with id {} owned by {}", currentUser, id, flightToEdit.getAircraft().getOwner().getUsername());
                         model.addAttribute("error", "You don't have access to edit this flight!");
                     }
                     return "redirect:/flights/" + id;
@@ -147,6 +153,7 @@ public class FlightsController {
                 }
             }
         } catch (IllegalArgumentException exception) {
+            LOG.info("{} tried to access the empty flight with id {}", currentUser.getUsername(), id);
             throw new FlightNotFoundException("Flight with id " + id + " did not found", exception);
         }
     }
@@ -157,8 +164,10 @@ public class FlightsController {
         try {
             Flight flightToDelete = flightsService.findById(Long.parseLong(id));
             if (flightToDelete.getAircraft().getOwner().getUsername().equals(currentUser.getUsername())) {
+                LOG.info("{} deleted flight with id {}", currentUser, id);
                 flightsService.deleteFlight(flightToDelete);
             } else {
+                LOG.info("{} tried to edit the flight with id {} owned by {}", currentUser, id, flightToDelete.getAircraft().getOwner().getUsername());
                 model.addAttribute("error", "You don't have access to delete this flight!");
                 return "redirect:/flights/" + id;
             }
@@ -168,5 +177,4 @@ public class FlightsController {
         }
         return "redirect:/flights";
     }
-
 }

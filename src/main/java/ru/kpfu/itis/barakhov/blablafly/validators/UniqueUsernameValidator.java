@@ -7,7 +7,6 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
-
     @Autowired
     private UserService userService;
 
@@ -15,5 +14,4 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         return userService.usernameUniqueness(s);
     }
-
 }

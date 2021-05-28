@@ -13,5 +13,4 @@ public interface AircraftsRepository extends JpaRepository<Aircraft, Long> {
     Aircraft findByName(String name);
 
     List<Aircraft> findByOwner(UserDetails owner);
-
 }

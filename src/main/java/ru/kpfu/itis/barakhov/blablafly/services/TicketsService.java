@@ -10,5 +10,4 @@ public interface TicketsService {
     void bookTicket(Long flightIg, UserDetails currentUser);
 
     List<TicketDto> findOwnedBy(UserDetails currentUser);
-
 }

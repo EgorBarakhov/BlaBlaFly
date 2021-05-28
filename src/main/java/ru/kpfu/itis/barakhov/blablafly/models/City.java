@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "city")
 public class City {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,5 +26,4 @@ public class City {
 
     @OneToMany(mappedBy = "departureCity", fetch = FetchType.LAZY)
     private List<Flight> departures;
-
 }

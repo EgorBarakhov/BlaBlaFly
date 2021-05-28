@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @FieldMatch(example = "password", match = "confirmPassword", message = "Password do not match")
 public class UserForm {
-
     @NotNull
     @Size(min = 5, max = 20, message = "Username should be at least 5 and no more than 20 characters")
     @Pattern(regexp = "^[a-zA-Z0-9]*([._-](?![._-])|[a-zA-Z0-9])*[a-zA-Z0-9]$", message = "Invalid symbols in username")
@@ -29,5 +28,4 @@ public class UserForm {
 
     @NotEmpty(message = "Confirm password")
     private String confirmPassword;
-
 }
