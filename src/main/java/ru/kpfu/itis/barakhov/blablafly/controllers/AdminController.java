@@ -21,14 +21,14 @@ public class AdminController {
     private UserService userService;
 
     @GetMapping("/admin")
-    public String userList(Model model) {
+    public String index(Model model) {
         model.addAttribute("allUsers", userService.allUsers());
         return "admin";
     }
 
     @PostMapping("/admin")
-    public String deleteUser(@RequestParam(required = true, defaultValue = "") String userId,
-                             @RequestParam(required = true, defaultValue = "") String action) {
+    public String delete(@RequestParam(required = true, defaultValue = "") String userId,
+                         @RequestParam(required = true, defaultValue = "") String action) {
         if (action.equals("delete")){
             if (userService.deleteUser(Long.parseLong(userId))) {
                 LOG.info("User with id {} had been deleted", userId);

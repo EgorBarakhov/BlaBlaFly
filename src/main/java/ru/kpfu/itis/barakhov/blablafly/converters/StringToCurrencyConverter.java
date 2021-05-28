@@ -7,6 +7,10 @@ import java.util.Currency;
 public class StringToCurrencyConverter implements Converter<String, Currency> {
     @Override
     public Currency convert(String s) {
-        return Currency.getInstance(s);
+        try {
+            return Currency.getInstance(s);
+        } catch (IllegalArgumentException exception) {
+            return null;
+        }
     }
 }

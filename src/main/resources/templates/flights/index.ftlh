@@ -1,55 +1,56 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Flights | BlaBlaFly</title>
-</head>
-<body>
-<form action="/flights" method="get" modelattribute="flightSearchForm">
-    <label> Departure City:
-        <select name="departureCity">
-            <option value=""></option>
-            <#list citiesList as city>
-                <option value=${city.name}>${city.name}</option>
-            </#list>
-        </select>
-    </label>
-    <label> Arrival City:
-        <select name="arrivalCity">
-            <option value=""></option>
-            <#list citiesList as city>
-                <option value=${city.name}>${city.name}</option>
-            </#list>
-        </select>
-    </label>
-    <label> Departure Time:
-        <input type="datetime-local" name="departureTime">
-    </label>
-    <input type="submit" value="Search">
-</form>
-<form action="/flights/new" method="get">
-    <button type="submit">Create new Flight</button>
-</form>
-<table>
+<#import '/spring.ftl' as spring>
+<#import '../template.ftlh' as template/>
+
+<@template.template 'Flights | BlaBlaFly'>
+<div class="row justify-content-start">
+<div class="col-10">
+    <form action="<@spring.url "/flights"/>" method="get" modelattribute="flightSearchForm">
+        <label> Departure City:
+            <select class="form-select" name="departureCity">
+                <option value=""></option>
+                <#list citiesList as city>
+                    <option value=${city.name}>${city.name}</option>
+                </#list>
+            </select>
+        </label>
+        <label> Arrival City:
+            <select class="form-select" name="arrivalCity">
+                <option value=""></option>
+                <#list citiesList as city>
+                    <option value=${city.name}>${city.name}</option>
+                </#list>
+            </select>
+        </label>
+        <label> Departure Time:
+            <input type="datetime-local" name="departureTime">
+        </label>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+<div class="col-2">
+    <form action="<@spring.url "/flights/new"/>" method="get">
+        <button type="submit" class="btn btn-primary">Create new Flight</button>
+    </form>
+</div>
+<table class="table table-stripped">
     <thead>
     <tr>
-        <th>Departure City</th>
-        <th>Arrival City</th>
-        <th>Departure Time</th>
-        <th>Arrival Time</th>
-        <th>Flight Aircraft</th>
-        <th>Pilot</th>
-        <th>Available Places</th>
-        <th>Ticket Price</th>
-        <th></th>
+        <th scope="col">#</th>
+        <th scope="col">Departure City</th>
+        <th scope="col">Arrival City</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Arrival Time</th>
+        <th scope="col">Flight Aircraft</th>
+        <th scope="col">Pilot</th>
+        <th scope="col">Available Places</th>
+        <th scope="col">Ticket Price</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
         <#list flightsList as flight>
             <tr>
+                <th scope="row">${flight_index + 1}</th>
                 <td>${flight.departureCity}</td>
                 <td>${flight.arrivalCity}</td>
                 <td>${flight.displayTime(flight.departureTime)}</td>
@@ -58,10 +59,9 @@
                 <td>${flight.pilot}</td>
                 <td>${flight.availablePlacesCount}</td>
                 <td>${flight.ticketPrice} ${flight.ticketCurrency}</td>
-                <td><a href="/flights/${flight.id}">Buy a Ticket</a></td>
+                <td><a href="<@spring.url "/flights/${flight.id}"/>">Buy a Ticket</a></td>
             </tr>
         </#list>
     </tbody>
 </table>
-</body>
-</html>
+</@template.template>

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.barakhov.blablafly.dto.AircraftDto;
+import ru.kpfu.itis.barakhov.blablafly.dto.forms.AircraftForm;
 import ru.kpfu.itis.barakhov.blablafly.models.Aircraft;
+import ru.kpfu.itis.barakhov.blablafly.models.User;
 import ru.kpfu.itis.barakhov.blablafly.repositories.AircraftsRepository;
 
 import java.util.List;
@@ -18,7 +20,18 @@ public class AircraftsServiceImpl implements AircraftsService {
     private AircraftsRepository aircraftsRepository;
 
     @Override
-    public List<AircraftDto> findOwned(UserDetails currentUser) {
+    public void createAircraft(AircraftForm aircraftForm, UserDetails currentUser) {
+        Aircraft aircraft = Aircraft.builder()
+                .owner((User) currentUser)
+                .capacity(aircraftForm.getCapacity())
+                .name(aircraftForm.getName())
+                .legacySerialNumber(aircraftForm.getLegacySerialNumber())
+                .build();
+        aircraftsRepository.save(aircraft);
+    }
+
+    @Override
+    public List<AircraftDto> findOwnedBy(UserDetails currentUser) {
         return from(aircraftsRepository.findByOwner(currentUser));
     }
 

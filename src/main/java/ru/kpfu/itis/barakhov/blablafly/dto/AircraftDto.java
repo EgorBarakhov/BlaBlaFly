@@ -16,9 +16,15 @@ public class AircraftDto {
 
     private String name;
 
+    private String legacySerialNumber;
+
+    private Integer capacity;
+
     public static AircraftDto from(Aircraft aircraft) {
         return AircraftDto.builder()
                 .name(aircraft.getName())
+                .legacySerialNumber(aircraft.getLegacySerialNumber())
+                .capacity(aircraft.getCapacity())
                 .build();
     }
 

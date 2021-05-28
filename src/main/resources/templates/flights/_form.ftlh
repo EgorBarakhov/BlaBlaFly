@@ -1,7 +1,9 @@
+<#import '/spring.ftl' as spring>
+
 <#macro flightForm action citiesList aircraftsList errors>
     <form action="${action}" method="post" modelattribute="flightForm">
         <label> Departure City:
-            <select name="departureCity">
+            <select class="form-select" name="departureCity">
                 <option value=""></option>
                 <#list citiesList as city>
                     <option value=${city.name}>${city.name}</option>
@@ -9,7 +11,7 @@
             </select>
         </label>
         <label> Arrival City:
-            <select name="arrivalCity">
+            <select class="form-select" name="arrivalCity">
                 <option value=""></option>
                 <#list citiesList as city>
                     <option value=${city.name}>${city.name}</option>
@@ -23,7 +25,7 @@
             <input type="datetime-local" name="arrivalTimeUtc">
         </label>
         <label> Aircraft:
-            <select name="aircraft">
+            <select class="form-select" name="aircraft">
                 <option value=""></option>
                 <#list aircraftsList as aircraft>
                     <option value="${aircraft.name}">${aircraft.name}</option>
@@ -34,14 +36,14 @@
             <input type="number" name="ticketPrice">
         </label>
         <label> Currency:
-            <select name="ticketCurrency">
+            <select class="form-select" name="ticketCurrency">
                 <option value=""></option>
                 <option value="USD">USD</option>
                 <option value="RUB">RUB</option>
             </select>
         </label>
-        <input type="hidden" name="availablePlacesCount" value="12">
-        <input type="submit" value="Save">
+        <input type="hidden" name="availablePlacesCount" value="0">
+        <button type="submit" class="btn btn-primary">Save</button>
         <div>
             <#if errors??>
                 <#list errors as error>

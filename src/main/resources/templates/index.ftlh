@@ -1,3 +1,5 @@
+<#import 'spring.ftl' as spring>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
 </head>
 <body>
 <h3>Index page</h3>
-<a href="/login">Log In</a>
-<a href="/signup">Sign Up</a>
+<a href="<@spring.url "/login"/>">Log In</a>
+<a href="<@spring.url "/signup"/>">Sign Up</a>
 </body>
 </html>

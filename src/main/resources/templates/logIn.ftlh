@@ -1,3 +1,5 @@
+<#import 'spring.ftl' as spring>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,14 +11,14 @@
 </head>
 <body>
 <h3>Login page</h3>
-<form action="/perform-login" method="post" modelattribute="loginForm">
+<form action="<@spring.url "/perform-login"/>" method="post" modelattribute="loginForm">
     <h4>Log In</h4>
     <input type="text" name="username" placeholder="Username" autofocus="autofocus">
     <input type="password" name="password" placeholder="Password">
     <#if error??>
         <div>${error}</div>
     </#if>
-    <input type="submit" value="Fly!">
+    <button type="submit" class="btn btn-primary">Fly!</button>
 </form>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<#import 'spring.ftl' as spring>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,12 +11,12 @@
 </head>
 <body>
 <h3>Signup page</h3>
-<form action="/signup" method="post" modelattribute="userForm">
+<form action="<@spring.url "/signup"/>" method="post" modelattribute="userForm">
     <h4>Create an account on BlaBlaFly</h4>
     <input type="text" name="username" placeholder="Username" autofocus="autofocus">
     <input type="password" name="password" placeholder="Password">
     <input type="password" name="confirmPassword" placeholder="Confirm password">
-    <input type="submit" value="Ready to Fly!">
+    <button type="submit" class="btn btn-primary">Ready to Fly!</button>
     <div>
         <#if errors??>
             <#list errors as error>
@@ -23,6 +25,6 @@
         </#if>
     </div>
 </form>
-<a href="/login">I have an account</a>
+<a href="<@spring.url "/login"/>">I have an account</a>
 </body>
 </html>

@@ -30,7 +30,7 @@ public class TicketsController {
     @GetMapping("/tickets")
     public String listTickets(Model model, Principal principal) {
         UserDetails currentUser = userService.loadUserByUsername(principal.getName());
-        model.addAttribute("ticketsList", ticketsService.findAll(currentUser));
+        model.addAttribute("ticketsList", ticketsService.findOwnedBy(currentUser));
         return "tickets/index";
     }
 

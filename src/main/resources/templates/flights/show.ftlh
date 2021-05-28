@@ -1,19 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Flight | BlaBlaFly</title>
-</head>
-<body>
-<form action="/flights/${flight.id}/edit" method="get">
-    <button type="submit">Edit</button>
-</form>
-<form action="/flights/${flight.id}" method="post">
-    <button type="submit">Delete</button>
-</form>
+<#import '/spring.ftl' as spring>
+<#import '../template.ftlh' as template/>
+
+<@template.template 'Flight | BlaBlaFly'>
+<div class="row justify-content-end">
+
+    <div class="col-1">
+        <form action="<@spring.url "/flights/${flight.id}/edit"/>" method="get">
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+    <div class="col-1">
+        <form action="<@spring.url "/flights/${flight.id}"/>" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>
 <dl>
     <dt>Departure Time: </dt>
     <dd>${flight.displayTime(flight.departureTime)}</dd>
@@ -40,8 +41,8 @@
     <dd>${flight.pilot}</dd>
 
 </dl>
-<form action="/flights/${flight.id}/ticket" method="post">
-    <button type="submit">Buy a Ticket</button>
+<form action="<@spring.url "/flights/${flight.id}/ticket"/>" method="post">
+    <button type="submit" class="btn btn-success">Buy a Ticket</button>
 </form>
-</body>
-</html>
+
+</@template.template>

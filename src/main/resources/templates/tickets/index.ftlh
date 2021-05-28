@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Tickets | BlaBlaFly</title>
-</head>
-<body>
-<table>
+<#import '/spring.ftl' as spring>
+<#import '../template.ftlh' as template/>
+
+<@template.template 'My Tickets | BlaBlaFly'>
+<table class="table table-stripped">
     <thead>
     <tr>
-        <th>Flight Info</th>
-        <th>Price</th>
-        <th></th>
+        <th scope="col">#</th>
+        <th scope="col">Flight Info</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     <#list ticketsList as ticket>
         <tr>
-            <td><a href="/flights/${ticket.flightId}">Preview</a></td>
+            <th scope="row">${ticket_index + 1}</th>
+            <td><a href="<@spring.url "/flights/${ticket.flightId}"/>">Preview</a></td>
             <td>${ticket.price} ${ticket.currency}</td>
             <td><a href="">Cancel</a></td>
         </tr>
     </#list>
     </tbody>
 </table>
-</body>
-</html>
+</@template.template>

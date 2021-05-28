@@ -55,7 +55,7 @@ public class FlightsController {
         UserDetails currentUser = userService.loadUserByUsername(principal.getName());
         model.addAttribute("flightForm", new FlightForm());
         model.addAttribute("citiesList", citiesService.findAll());
-        model.addAttribute("aircraftsList", aircraftsService.findOwned(currentUser));
+        model.addAttribute("aircraftsList", aircraftsService.findOwnedBy(currentUser));
         return "flights/new";
     }
 
@@ -70,7 +70,7 @@ public class FlightsController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("flightForm", new FlightForm());
             model.addAttribute("citiesList", citiesService.findAll());
-            model.addAttribute("aircraftsList", aircraftsService.findOwned(currentUser));
+            model.addAttribute("aircraftsList", aircraftsService.findOwnedBy(currentUser));
             return "/flights/new";
         } else {
             try {
@@ -105,12 +105,12 @@ public class FlightsController {
                 model.addAttribute("flightForm", flightsService.convertToForm(flightToEdit));
                 model.addAttribute("flight", FlightDto.from(flightToEdit));
                 model.addAttribute("citiesList", citiesService.findAll());
-                model.addAttribute("aircraftsList", aircraftsService.findOwned(currentUser));
+                model.addAttribute("aircraftsList", aircraftsService.findOwnedBy(currentUser));
+                return "flights/edit";
             } else {
                 model.addAttribute("error", "You don't have access to edit this flight!");
                 return "redirect:/flights/" + id;
             }
-            return "flights/edit";
         } catch (IllegalArgumentException exception) {
             throw new FlightNotFoundException("Flight with id " + id + " did not found", exception);
         }
@@ -130,7 +130,7 @@ public class FlightsController {
                 model.addAttribute("errors", bindingResult.getAllErrors());
                 model.addAttribute("flightForm", flightsService.convertToForm(flightToEdit));
                 model.addAttribute("citiesList", citiesService.findAll());
-                model.addAttribute("aircraftsList", aircraftsService.findOwned(currentUser));
+                model.addAttribute("aircraftsList", aircraftsService.findOwnedBy(currentUser));
                 return "/flights/" + id + "/edit";
             } else {
                 try {

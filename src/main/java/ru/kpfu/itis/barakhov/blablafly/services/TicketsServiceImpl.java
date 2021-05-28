@@ -38,7 +38,7 @@ public class TicketsServiceImpl implements TicketsService {
     }
 
     @Override
-    public List<TicketDto> findAll(UserDetails currentUser) {
+    public List<TicketDto> findOwnedBy(UserDetails currentUser) {
         return from(ticketsRepository.findByHolder(currentUser));
     }
 }

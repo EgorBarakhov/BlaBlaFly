@@ -1,12 +1,8 @@
 package ru.kpfu.itis.barakhov.blablafly.dto.forms;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import ru.kpfu.itis.barakhov.blablafly.dto.FlightDto;
 import ru.kpfu.itis.barakhov.blablafly.models.Aircraft;
 import ru.kpfu.itis.barakhov.blablafly.models.City;
-import ru.kpfu.itis.barakhov.blablafly.models.Flight;
-import ru.kpfu.itis.barakhov.blablafly.services.CitiesService;
 
 import javax.validation.constraints.NotNull;
 import java.util.Currency;
