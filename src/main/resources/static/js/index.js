@@ -4,7 +4,7 @@ $(function() {
     function showCityName(cityName) {
         var apiKey = $('#api-key')[0].value;
 
-        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey, function(data) {
+        $.getJSON("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey, function(data) {
 
             var weatherDescription = data["weather"][0]["description"];
             var temp = data["main"]["temp"];
